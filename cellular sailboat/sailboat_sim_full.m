@@ -16,20 +16,7 @@ rotation_angle_x = 0;
 rotation_angle_y = 0;  
 rotation_angle_z = 0;  
 
-% Create the object (CHAT GPT SECTION START)
-bobbing_object_position = [size_of_game/2, size_of_game/2];  % Change these values to set the position of the object
-bobbing_object_amplitude = 5;  % The amount the object bobs up and down
-bobbing_object_frequency = 1;  % How quickly the object bobs up and down
-bobbing_object_phase = 0;  % The starting point in the bobbing cycle
-bobbing_object_time = 0;
-bobbing_object_height = 2;% Keeps track of the time for the sine function
-% Create the object (CHAT GPT SECTION END)
-
-
-
-
 while 1
-
 
 for i = 1:size_of_game
     si = i-1;
@@ -113,15 +100,11 @@ end
 
 pause(0.1);
 
-bobbing_object_time = bobbing_object_time + 1;
-
-
 vertices = boat.Points;
 faces = boat.ConnectivityList;
 vertices = vertices + shift;
 scale_factor = 0.02;  
 vertices = vertices * scale_factor;
-
 
 rotation_matrix_x = [1, 0, 0; 0, cos(rotation_angle_x), -sin(rotation_angle_x); 0, sin(rotation_angle_x), cos(rotation_angle_x)];
 rotation_matrix_y = [cos(rotation_angle_y), 0, sin(rotation_angle_y); 0, 1, 0; -sin(rotation_angle_y), 0, cos(rotation_angle_y)];
@@ -136,7 +119,6 @@ vertices = (rotation_matrix_y * vertices')';
 vertices = (rotation_matrix_z * vertices')';
 
 vertices = vertices + center;
-
 
 boat_shifted = triangulation(faces, vertices);
 
